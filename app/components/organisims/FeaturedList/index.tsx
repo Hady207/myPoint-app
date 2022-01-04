@@ -6,8 +6,8 @@ import {T} from '@components/atoms';
 const FeaturedList = () => {
   return (
     <View>
-      <T text="featured list" />
-      <ScrollView horizontal>
+      <T text="Featured List" textStyle={{marginBottom: 10, fontSize: 21}} />
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <FeaturedCard />
         <FeaturedCard />
       </ScrollView>

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
-import {Container, T, Image} from '@components/atoms';
+import {StyleSheet, View} from 'react-native';
+import {Container, T, Image, Button} from '@components/atoms';
 import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
@@ -28,11 +28,13 @@ const Home = () => {
         <T text="storeName" />
         <T text="storeName" />
       </View>
-      <Button
-        color="pink"
-        onPress={() => navigation.navigate('CalendarScreen')}
-        title={'book'}
-      />
+      <View
+        style={{flex: 1, justifyContent: 'flex-end', paddingHorizontal: 10}}>
+        <Button
+          onPress={() => navigation.navigate('CalendarScreen')}
+          title="Book Now"
+        />
+      </View>
     </Container>
   );
 };

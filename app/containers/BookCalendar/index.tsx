@@ -33,9 +33,9 @@ const BookCalendar = () => {
           '2022-01-25': {
             dots: [vacation, massage, workout],
             selected: true,
-            selectedColor: 'purple',
+            selectedColor: '#FF1493',
           },
-          '2022-01-26': {dots: [massage, workout], disabled: true},
+          '2022-01-26': {dots: [massage, workout]},
         }}
         // day from another month that is visible in calendar page. Default = false
         // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday

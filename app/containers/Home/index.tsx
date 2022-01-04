@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, StyleSheet} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Container, T} from '@components/atoms';
+import {Container, T, Header} from '@components/atoms';
 import {FeaturedList, StoreList} from '@components/organisims';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -9,6 +9,9 @@ const Home = () => {
   const navigation = useNavigation();
   return (
     <Container>
+      <View style={styles.header}>
+        <T text="MyPoint" textStyle={{fontSize: 21, textAlign: 'center'}} />
+      </View>
       <FeaturedList />
       <StoreList />
     </Container>
@@ -17,4 +20,11 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  header: {
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
+});

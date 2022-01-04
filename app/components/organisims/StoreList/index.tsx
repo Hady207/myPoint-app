@@ -15,11 +15,12 @@ const StoreList = () => {
   );
   return (
     <View>
-      <T text="stores" />
+      <T text="Stores" textStyle={{marginVertical: 10, fontSize: 21}} />
       <FlatList
         numColumns={2}
         contentContainerStyle={{flexGrow: 1}}
-        data={[{}, {}, {}, {}, {}]}
+        columnWrapperStyle={{alignItems: 'center', justifyContent: 'center'}}
+        data={[{}, {}, {}, {}]}
         renderItem={renderItem}
       />
     </View>
