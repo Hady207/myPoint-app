@@ -1,25 +1,29 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useSelector} from 'react-redux';
+import MainDrawerNavigator from '@navigations/drawer/MainDrawer';
+import {navigationRef, isReadyRef} from '@utils/navigationUtils';
 
-import AppStack from './stacks/AppStack';
+import rootSelectors from '@containers/Root/selectors';
 
 const Stack = createNativeStackNavigator();
 
 // the root navigator will be here
 const RootNavigator = () => {
   const routeNameRef = useRef();
+  const {accessToken} = useSelector(rootSelectors);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="AppStack"
-          component={AppStack}
-          options={{headerShown: false}}
-        />
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        isReadyRef.current = true;
+        routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+      }}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="AppDrawer" component={MainDrawerNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

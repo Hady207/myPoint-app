@@ -1,34 +1,43 @@
 import React from 'react';
-import {StyleSheet, View, Pressable, Platform} from 'react-native';
+import {StyleSheet, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Image from '../Image';
-import {T} from '../T';
+import {Header, Icon} from 'react-native-elements';
 
-// Header Component for home screen
+import {T} from '@atoms';
+import {Colors, Scale} from '@styles';
 
-const Header = () => {
+const DrawerHeader = ({title}: object) => {
   const navigation = useNavigation();
 
+  const HeaderLeft = () => (
+    <Pressable onPress={() => navigation.toggleDrawer()}>
+      <Icon name="menu" type="simple-line-icon" color={Colors.textColor} />
+    </Pressable>
+  );
+
   return (
-    <View style={styles.headerContainer}>
-      <T text="myPoint" />
-    </View>
+    <Header
+      backgroundColor={Colors.background}
+      leftComponent={<HeaderLeft />}
+      centerComponent={<T text={title} />}
+      // rightComponent={{ icon: 'home', color: '#fff' }}
+    />
   );
 };
 
-export default Header;
+export default DrawerHeader;
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    paddingTop: 0,
+  logoContainer: {
+    // height: 100,
+    // width: 100,
+    flex: 1,
+    // backgroundColor: 'red',
   },
-  logoStyle: {width: 'auto', height: 37, aspectRatio: 511 / 118},
-  notificationContainer: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    marginEnd: 10,
+  logoStyle: {
+    // width: '100%',
+    height: '100%',
+    aspectRatio: Scale.moderateScale(511) / Scale.moderateScale(118),
+    // marginTop: -10,
   },
 });

@@ -1,7 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, SafeAreaView} from 'react-native';
 
-const Container = ({containerStyle, children}) => {
+type ContainerProps = {
+  containerStyle?: {};
+  children: React.ReactNode;
+};
+
+const Container = ({containerStyle, children}: ContainerProps) => {
   return (
     <SafeAreaView style={[styles.globalSafeAreaStyle]}>
       <View style={[styles.screen, containerStyle]}>{children}</View>

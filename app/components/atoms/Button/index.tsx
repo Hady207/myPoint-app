@@ -2,6 +2,14 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
+type MyButton = {
+  outline: boolean;
+  buttonStyle: {};
+  title: string;
+  intlType: string;
+  titleStyle: object;
+};
+
 const MyButton = ({
   outline,
   buttonStyle,
@@ -9,7 +17,7 @@ const MyButton = ({
   intlType,
   titleStyle,
   ...props
-}) => {
+}: MyButton) => {
   return (
     <Button
       type={outline ? 'outline' : 'solid'}

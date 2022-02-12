@@ -9,9 +9,6 @@ const Home = () => {
   const navigation = useNavigation();
   return (
     <Container>
-      <View style={styles.header}>
-        <T text="MyPoint" textStyle={{fontSize: 21, textAlign: 'center'}} />
-      </View>
       <FeaturedList />
       <StoreList />
     </Container>

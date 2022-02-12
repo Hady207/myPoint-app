@@ -7,10 +7,10 @@ import {useNavigation} from '@react-navigation/native';
 
 const StoreList = () => {
   const navigation = useNavigation();
-  const handleNavigation = param => {
+  const handleNavigation = (param: {}) => {
     navigation.navigate('StoreScreen', {param});
   };
-  const renderItem = ({item}) => (
+  const renderItem = ({item}: {item: {}}) => (
     <StoreCard onPress={() => handleNavigation(item)} />
   );
   return (
