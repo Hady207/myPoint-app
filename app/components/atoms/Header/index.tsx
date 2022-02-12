@@ -10,7 +10,7 @@ const DrawerHeader = ({title}: object) => {
   const navigation = useNavigation();
 
   const HeaderLeft = () => (
-    <Pressable onPress={() => navigation.toggleDrawer()}>
+    <Pressable onPress={() => navigation?.toggleDrawer()}>
       <Icon name="menu" type="simple-line-icon" color={Colors.textColor} />
     </Pressable>
   );

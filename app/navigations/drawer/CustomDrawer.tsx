@@ -1,64 +1,84 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Avatar} from 'react-native-elements';
+import {Avatar, Divider} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootScreenActions} from '@containers/Root/reducer';
-import {T} from '@atoms';
+import rootSelectors from '@containers/Root/selectors';
+import {T, Button} from '@atoms';
+import {Colors, Mixins} from '@styles';
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import {Colors, Mixins} from '@styles';
+
+const ProfileSection = ({navigation, userProfile, ...props}) => {
+  const navigateToLogin = () => navigation.navigate('Login');
+  const navigateToSignup = () => navigation.navigate('Signup');
+  return (
+    <>
+      {userProfile?.id ? (
+        <View style={styles.profileContainer}>
+          <Avatar
+            size="medium"
+            overlayContainerStyle={{
+              backgroundColor: 'blue',
+            }}
+            rounded
+            title={'U'}
+          />
+          <View style={styles.nameContainer}>
+            <T text="hi_nav" />
+            <T text={'hadi'} />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.container}>
+          <Button
+            title="login"
+            buttonStyle={styles.loginBtnStyle}
+            onPress={navigateToLogin}
+          />
+          <Button
+            title="Signup"
+            outline
+            buttonStyle={styles.signupBtnStyle}
+            onPress={navigateToSignup}
+          />
+        </View>
+      )}
+    </>
+  );
+};
 
 const CustomDrawer = props => {
   const dispatch = useDispatch();
+
+  const {userProfile} = useSelector(rootSelectors);
+
   return (
     <DrawerContentScrollView {...props}>
-      <View style={styles.profileContainer}>
-        <Avatar
-          size="medium"
-          overlayContainerStyle={{
-            backgroundColor: 'blue',
-          }}
-          rounded
-          title={'U'}
-        />
-        <View style={styles.nameContainer}>
-          <T text="hi_nav" />
-          <T text={'hadi'} />
-        </View>
-      </View>
-
+      <ProfileSection {...props} userProfile={userProfile} />
+      <Divider style={styles.dividerStyle} />
       <DrawerItemList {...props} />
-      {/* <DrawerItem
-        label={({color}) => (
-          <T
-            title="choose_language"
-            color={color}
-            textStyle={{textAlign: 'left'}}
-          />
-        )}
-        onPress={() => {
-          props.navigation.toggleDrawer();
-          dispatch(RootScreenActions.languageModalToggler());
-        }}
-      /> */}
-      <DrawerItem
-        label={({color}) => (
-          <T
-            title="logout"
-            color={Colors.dangerRed}
-            textStyle={{textAlign: 'left'}}
-          />
-        )}
-        onPress={() => {
-          dispatch(RootScreenActions.signOut());
-          // navigation.reset({
-          //   routes: [{ name: 'AuthStack' }],
-          // });
-        }}
-      />
+      <Divider style={styles.dividerStyle} />
+      {userProfile?.id && (
+        <DrawerItem
+          label={({color}) => (
+            <T
+              text="Logout"
+              color={Colors.dangerRed}
+              textStyle={{textAlign: 'left'}}
+            />
+          )}
+          onPress={() => {
+            dispatch(RootScreenActions.signOut());
+            // navigation.reset({
+            //   routes: [{ name: 'AuthStack' }],
+            // });
+          }}
+        />
+      )}
     </DrawerContentScrollView>
   );
 };
@@ -76,5 +96,11 @@ const styles = StyleSheet.create({
   nameContainer: {
     ...Mixins.rowBetween,
     marginLeft: 10,
+  },
+  container: {padding: 10},
+  loginBtnStyle: {height: 50},
+  signupBtnStyle: {height: 50, marginTop: 10},
+  dividerStyle: {
+    marginBottom: 10,
   },
 });

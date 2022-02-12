@@ -1,15 +1,26 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text} from 'react-native';
+import {Colors, Scale} from '@styles';
 
 type TProps = {
   textStyle: {};
   text: string;
+  color: string;
+  size: string;
 };
 
-const T = ({text, textStyle}: TProps) => {
-  return <Text style={textStyle}>{text}</Text>;
+const T = ({text, textStyle, color, size}: TProps) => {
+  const defaultStyles = {
+    color,
+    fontSize: Scale.moderateScale(size),
+  };
+  return <Text style={[defaultStyles, textStyle]}>{text}</Text>;
+};
+
+T.defaultProps = {
+  color: Colors.textColor,
+  size: 14,
+  isDate: false,
 };
 
 export default T;
-
-const styles = StyleSheet.create({});
