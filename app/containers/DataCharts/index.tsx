@@ -1,11 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Container} from '@components/atoms';
+import {DataBox} from '@components/molecules';
+import {DataList} from '@components/organisims';
 
 const DataCharts = () => {
   return (
-    <View>
-      <Text>DataCharts</Text>
-    </View>
+    <Container>
+      <DataList />
+    </Container>
   );
 };
 

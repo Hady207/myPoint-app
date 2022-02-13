@@ -24,5 +24,6 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     paddingHorizontal: 10,
+    paddingTop: 20,
   },
 });
