@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, SafeAreaView} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 type ContainerProps = {
   containerStyle?: {};
@@ -8,7 +9,9 @@ type ContainerProps = {
 
 const Container = ({containerStyle, children}: ContainerProps) => {
   return (
-    <SafeAreaView style={[styles.globalSafeAreaStyle]}>
+    <SafeAreaView
+      edges={['left', 'right']}
+      style={[styles.globalSafeAreaStyle]}>
       <View style={[styles.screen, containerStyle]}>{children}</View>
     </SafeAreaView>
   );
