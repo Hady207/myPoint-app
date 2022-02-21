@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
+import {Colors} from '@styles';
 
 type MyButton = {
   outline: boolean;
@@ -43,9 +44,9 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 15,
     height: 60,
-    backgroundColor: '#FF1493',
+    backgroundColor: Colors.primaryColor,
   },
-  outlineButton: {backgroundColor: null, borderColor: 'red'},
+  outlineButton: {backgroundColor: null, borderColor: Colors.primaryColor},
   outlineTitleStyle: {color: 'black'},
   defaultTitleStyle: {
     fontSize: 16,

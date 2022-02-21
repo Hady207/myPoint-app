@@ -1,7 +1,7 @@
 export default {
   background: '#ffffff',
   white: 'white',
-  primaryColor: '#4736BF',
+  primaryColor: '#35109E',
   darkBlue: '#062845',
   linkColor: '#2e96f2',
   textColor: '#404042',
