@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <Container>
       <FeaturedList />
-      <StoreList />
+      <StoreList data={stores} />
     </Container>
   );
 };

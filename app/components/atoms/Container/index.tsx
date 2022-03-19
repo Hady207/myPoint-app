@@ -10,7 +10,7 @@ type ContainerProps = {
 const Container = ({containerStyle, children}: ContainerProps) => {
   return (
     <SafeAreaView
-      edges={['left', 'right']}
+      edges={['left', 'right', 'bottom']}
       style={[styles.globalSafeAreaStyle]}>
       <View style={[styles.screen, containerStyle]}>{children}</View>
     </SafeAreaView>
