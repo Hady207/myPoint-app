@@ -1,4 +1,4 @@
-import {put, call, takeLatest, select} from 'redux-saga/effects';
+import {put, call, takeLatest} from 'redux-saga/effects';
 
 import {storageWrite} from '@utils/storageUtils';
 import {navigate, navigateBack} from '@utils/navigationUtils';
