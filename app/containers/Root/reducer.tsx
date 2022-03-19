@@ -3,16 +3,15 @@ import {createActions} from 'reduxsauce';
 export const {Types: RootScreenTypes, Creators: RootScreenActions} =
   createActions({
     startUp: null,
-    signIn: ['driver', 'accessToken'],
+    signIn: ['user', 'token'],
     userProfile: ['user'],
-    onBoarding: null,
     signOut: null,
   });
 
 export const initialState = {
   isLoading: false,
   userProfile: null,
-  accessToken: null,
+  token: null,
   errorMessage: null,
 };
 
@@ -25,8 +24,8 @@ export const rootScreenReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         errorMessage: null,
-        userProfile: action.driver,
-        accessToken: action.accessToken,
+        userProfile: action.user,
+        token: action.token,
       };
 
     case RootScreenTypes.SIGN_OUT:

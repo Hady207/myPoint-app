@@ -7,8 +7,6 @@ function* homePageSettingSaga() {
   try {
     const response = yield call(getStoresService);
 
-    console.log(response);
-
     if (response.ok) {
       yield put(HomeActions.getHomeDataSuccess(response.data));
     } else {

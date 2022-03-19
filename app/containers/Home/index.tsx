@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Button, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Container, T, Header} from '@components/atoms';
-import {FeaturedList, StoreList} from '@components/organisims';
+import {FeaturedList, StoreList} from '@components/organisms';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import {HomeActions} from './reducer';
@@ -16,8 +16,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(HomeActions.getHomeData());
   }, [dispatch]);
-
-  console.log('stores', stores);
 
   return (
     <Container>

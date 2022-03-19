@@ -21,15 +21,13 @@ const ProfileSection = ({navigation, userProfile, ...props}) => {
         <View style={styles.profileContainer}>
           <Avatar
             size="medium"
-            overlayContainerStyle={{
-              backgroundColor: 'blue',
-            }}
+            overlayContainerStyle={styles.profileAvatarStyle}
+            titleStyle={styles.profileAvatarTextStyle}
             rounded
-            title={'U'}
+            title={userProfile?.username[0] || 'U'}
           />
           <View style={styles.nameContainer}>
-            <T text="hi_nav" />
-            <T text={'hadi'} />
+            <T text={userProfile?.username} />
           </View>
         </View>
       ) : (
@@ -93,6 +91,10 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     marginLeft: 10,
   },
+  profileAvatarStyle: {
+    backgroundColor: Colors.primaryColor,
+  },
+  profileAvatarTextStyle: {textTransform: 'capitalize'},
   nameContainer: {
     ...Mixins.rowBetween,
     marginLeft: 10,

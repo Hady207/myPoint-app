@@ -7,7 +7,6 @@ type MyButton = {
   outline: boolean;
   buttonStyle: {};
   title: string;
-  intlType: string;
   titleStyle: object;
 };
 
@@ -15,7 +14,6 @@ const MyButton = ({
   outline,
   buttonStyle,
   title,
-  intlType,
   titleStyle,
   ...props
 }: MyButton) => {
@@ -46,7 +44,10 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: Colors.primaryColor,
   },
-  outlineButton: {backgroundColor: null, borderColor: Colors.primaryColor},
+  outlineButton: {
+    backgroundColor: 'transparent',
+    borderColor: Colors.primaryColor,
+  },
   outlineTitleStyle: {color: 'black'},
   defaultTitleStyle: {
     fontSize: 16,

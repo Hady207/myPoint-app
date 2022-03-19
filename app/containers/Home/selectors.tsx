@@ -1,7 +1,7 @@
 import {createSelector, createStructuredSelector} from 'reselect';
 import {initalState} from './reducer';
 
-const homeRootSelector = state => state.home ?? initalState;
+const homeRootSelector = (state: any) => state.home ?? initalState;
 
 export const selectIsloading = () =>
   createSelector(homeRootSelector, substate => substate.isLoading);
