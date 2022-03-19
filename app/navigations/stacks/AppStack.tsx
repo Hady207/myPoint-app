@@ -9,7 +9,7 @@ const AppStack = () => {
   const {userProfile} = useSelector(rootSelectors);
   return (
     <>
-      {userProfile?.role === 'admin' ? <UserHomeStack /> : <AdminHomeStack />}
+      {userProfile?.role === 'admin' ? <AdminHomeStack /> : <UserHomeStack />}
     </>
   );
 };

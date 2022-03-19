@@ -11,7 +11,7 @@ import {runOnJS} from 'react-native-reanimated';
 import {Colors} from '@styles';
 
 const QRScanner = () => {
-  const [useCamera, setUseCamera] = useState(false);
+  const [useCamera, setUseCamera] = useState<boolean>(false);
   const [barcodes, setBarcodes] = useState<Barcode[]>([]);
   const devices = useCameraDevices();
   const isFocused = useIsFocused();
@@ -48,7 +48,7 @@ const QRScanner = () => {
         frameProcessor={frameProcessor}
         frameProcessorFps={5}
       />
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={styles.qrSquarContainer}>
         <View style={styles.qrcodeScanner} />
       </View>
       {barcodes.map((barcode, idx) => (
@@ -63,6 +63,7 @@ const QRScanner = () => {
 export default QRScanner;
 
 const styles = StyleSheet.create({
+  qrSquarContainer: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   qrcodeScanner: {
     height: 200,
     width: 200,
