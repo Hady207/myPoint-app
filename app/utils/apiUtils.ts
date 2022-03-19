@@ -2,7 +2,7 @@ import {create} from 'apisauce';
 import {storageRead} from '@utils/storageUtils';
 
 export const api = create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://my-point-207.herokuapp.com/',
 });
 
 api.axiosInstance.interceptors.request.use(
