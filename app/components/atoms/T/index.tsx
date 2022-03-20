@@ -3,10 +3,10 @@ import {Text} from 'react-native';
 import {Colors, Scale} from '@styles';
 
 type TProps = {
-  textStyle: {};
+  textStyle?: {};
   text: string;
-  color: string;
-  size: string;
+  color?: string;
+  size?: number;
 };
 
 const T = ({text, textStyle, color, size}: TProps) => {

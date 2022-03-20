@@ -12,7 +12,7 @@ const BookCalendar = () => {
     <Container>
       <Calendar
         // Initially visible month. Default = now
-        current={'2022-01-04'}
+        // current={'2022-01-04'}
         // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
         // Handler which gets executed on day press. Default = undefined
         onDayPress={day => {

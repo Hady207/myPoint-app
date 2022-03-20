@@ -4,7 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Header} from '@atoms';
 import HomeScreen from '@containers/Home';
 import StoreScreen from '@containers/StoreDetails';
-import CalendarScreen from '@containers/BookCalendar';
+import BookingScreen from '@containers/Booking';
+import QRCodeScreen from '@containers/QRCode';
 
 const Stack = createNativeStackNavigator();
 // const Stack = createSharedElementStackNavigator();
@@ -28,8 +29,13 @@ const UserHomeStack = () => {
         options={headerOptions}
       />
       <Stack.Screen
-        name="CalendarScreen"
-        component={CalendarScreen}
+        name="BookingScreen"
+        component={BookingScreen}
+        options={headerOptions}
+      />
+      <Stack.Screen
+        name="QRcodeScreen"
+        component={QRCodeScreen}
         options={headerOptions}
       />
     </Stack.Navigator>

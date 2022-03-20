@@ -31,7 +31,7 @@ const Home = () => {
       <View
         style={{flex: 1, justifyContent: 'flex-end', paddingHorizontal: 10}}>
         <Button
-          onPress={() => navigation.navigate('CalendarScreen')}
+          onPress={() => navigation.navigate('BookingScreen')}
           title="Book Now"
         />
       </View>
