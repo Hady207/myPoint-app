@@ -28,12 +28,12 @@ const SignupScreen = () => {
 
   // FormikInitialValues
   const signupFormikValues = {
-    mobileNumber: '',
+    username: '',
     password: '',
   };
 
-  const handleSubmit = value => {
-    dispatch(SignupActions.credentials(value.mobileNumber, value.password));
+  const handleSubmit = (value: any) => {
+    dispatch(SignupActions.requestSignup(value.username, value.password));
   };
   return (
     <SafeAreaView style={{flex: 1}}>

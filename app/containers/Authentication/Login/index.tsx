@@ -6,6 +6,7 @@ import {Formik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 // import {useYup} from '@hooks';
+import {Button} from '@components/atoms';
 import {LoginForm} from '@components/organisms';
 import {Colors, Scale} from '@styles';
 import {LoginActions} from './reducer';
@@ -46,6 +47,7 @@ const Login = () => {
         onSubmit={handleLogin}>
         <LoginForm />
       </Formik>
+      <Button onPress={() => navigation.navigate('Home')} />
     </KeyboardAwareScrollView>
   );
 };

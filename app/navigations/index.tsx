@@ -6,14 +6,11 @@ import {useSelector} from 'react-redux';
 import MainDrawerNavigator from '@navigations/drawer/MainDrawer';
 import {navigationRef, isReadyRef} from '@utils/navigationUtils';
 
-import rootSelectors from '@containers/Root/selectors';
-
 const Stack = createNativeStackNavigator();
 
 // the root navigator will be here
 const RootNavigator = () => {
   const routeNameRef = useRef();
-  const {accessToken} = useSelector(rootSelectors);
 
   return (
     <SafeAreaProvider>

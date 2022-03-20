@@ -17,6 +17,7 @@ function* signUpSaga({username, password}) {
     };
 
     const response = yield call(signupService, postBody);
+    console.log(response);
 
     if (response.ok) {
       yield call(
@@ -28,9 +29,10 @@ function* signUpSaga({username, password}) {
       yield put(
         RootScreenActions.signIn(response.data?.user, response.data?.token),
       );
+      yield call(navigate, 'Home');
       yield put(SignupActions.signupRequestSuccess());
     } else {
-      yield put(SignupActions.signupRequestFail(response.data?.error.message));
+      yield put(SignupActions.signupRequestFail(response.data));
     }
   } catch (error) {
     // yield put(SignupActions.signupFail());

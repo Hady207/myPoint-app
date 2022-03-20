@@ -12,8 +12,6 @@ function* loginSaga(action: any) {
 
     const response = yield call(loginService, postBody);
 
-    console.log(response);
-
     if (response.ok) {
       yield call(
         storageWrite,
@@ -26,10 +24,7 @@ function* loginSaga(action: any) {
       );
 
       yield put(LoginActions.loginSuccess());
-
-      if (action.params) {
-        yield call(navigateBack);
-      }
+      yield call(navigate, 'Home');
     } else if (response.data.error.message === 'login failed') {
       yield put(LoginActions.loginFail('login_failed'));
       // const fcrash = yield call(crashlytics);

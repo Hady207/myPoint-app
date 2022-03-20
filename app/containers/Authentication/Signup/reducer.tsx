@@ -37,6 +37,7 @@ export const signupReducer = (state = initalState, action) => {
     case SignupTypes.CLEAR_ERROR_MESSAGE:
       return {
         ...state,
+        signupIsLoading: false,
         signupErrorMessage: null,
       };
 
