@@ -1,10 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Container, T, Image, Button} from '@components/atoms';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
-const Home = () => {
+const StoreDetails = () => {
   const navigation = useNavigation();
+  const {params} = useRoute();
+  console.log(params);
   return (
     <Container containerStyle={{paddingHorizontal: 0}}>
       <Image
@@ -31,7 +33,9 @@ const Home = () => {
       <View
         style={{flex: 1, justifyContent: 'flex-end', paddingHorizontal: 10}}>
         <Button
-          onPress={() => navigation.navigate('BookingScreen')}
+          onPress={() =>
+            navigation.navigate('BookingScreen', {storeId: params.param._id})
+          }
           title="Book Now"
         />
       </View>
@@ -39,6 +43,6 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default StoreDetails;
 
 const styles = StyleSheet.create({});

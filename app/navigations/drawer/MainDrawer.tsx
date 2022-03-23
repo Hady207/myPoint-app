@@ -6,6 +6,7 @@ import AppStack from '../stacks/AppStack';
 import {LoginScreen, SignupScreen} from '@containers/Authentication';
 import CustomDrawer from './CustomDrawer';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import MyBookingsScreen from '@containers/MyBookings';
 import LoginStack from '../stacks/loginStack';
 
 const Drawer = createDrawerNavigator();
@@ -22,6 +23,14 @@ const DrawerNavigatior = () => {
         component={AppStack}
         options={{
           headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="MyBookings"
+        component={MyBookingsScreen}
+        options={{
+          // headerShown: false,
+          title: 'My Bookings',
         }}
       />
       <Drawer.Screen

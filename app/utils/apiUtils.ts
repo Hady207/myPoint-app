@@ -11,7 +11,7 @@ api.axiosInstance.interceptors.request.use(
     const accessToken = await storageRead('accessToken');
 
     if (accessToken) {
-      config.headers.Authorization = `${accessToken}`;
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     return config;

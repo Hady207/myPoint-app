@@ -1,18 +1,24 @@
 import {StyleSheet, View, Pressable} from 'react-native';
 import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import spacetime from 'spacetime';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {Icon} from 'react-native-elements';
 import {T, Button, Container} from '@components/atoms';
 import {Colors} from '@styles/index';
+import {useDispatch} from 'react-redux';
+import {BookActions} from './reducer';
 
 const Booking = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {params} = useRoute();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [mode, setMode] = useState<string>('date');
   const [dateSelected, setDateSelected] = useState('');
   const [timeSelected, setTimeSelected] = useState<string>('');
+
+  console.log(params);
 
   const showDatePicker = mode => {
     setDatePickerVisibility(true);
@@ -23,7 +29,7 @@ const Booking = () => {
     setDatePickerVisibility(false);
   };
 
-  const handleConfirm = date => {
+  const handleDateConfirm = date => {
     // console.warn('A date has been picked: ', date);
     if (mode === 'date') {
       setDateSelected(date);
@@ -33,6 +39,12 @@ const Booking = () => {
     console.log(date);
     hideDatePicker();
   };
+
+  const handleBookConfirm = () => {
+    dispatch(BookActions.bookReq(params.storeId, dateSelected, timeSelected));
+    navigation.navigate('QRcodeScreen');
+  };
+
   return (
     <Container>
       <View style={styles.mainContainer}>
@@ -65,16 +77,13 @@ const Booking = () => {
       )}
 
       <View style={styles.footerContainer}>
-        <Button
-          title="confirm"
-          onPress={() => navigation.navigate('QRcodeScreen')}
-        />
+        <Button title="confirm" onPress={handleBookConfirm} />
       </View>
 
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode={mode}
-        onConfirm={handleConfirm}
+        onConfirm={handleDateConfirm}
         onCancel={hideDatePicker}
       />
     </Container>
