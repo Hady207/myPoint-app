@@ -11,8 +11,8 @@ type StoreListProps = {
 
 const StoreList = ({data}: StoreListProps) => {
   const navigation = useNavigation();
-  const handleNavigation = (param: object) => {
-    navigation.navigate('StoreScreen', {param});
+  const handleNavigation = (store: object) => {
+    navigation.navigate('StoreScreen', {store});
   };
   const renderItem = ({item}: {item: {}}) => (
     <StoreCard store={item} onPress={() => handleNavigation(item)} />

@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import {Keyboard, SafeAreaView, StyleSheet} from 'react-native';
+import React, {useEffect, useLayoutEffect} from 'react';
+import {Keyboard, SafeAreaView, StyleSheet, Pressable} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
+import {Icon} from 'react-native-elements';
 
 import {SignupForm} from '@components/organisms';
 import {Colors} from '@styles';
@@ -15,6 +16,18 @@ const SignupScreen = () => {
   // const captchaForm = useRef();
   const dispatch = useDispatch();
   // const {signupFormSchema} = useYup();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Pressable
+          style={{marginLeft: 10}}
+          onPress={() => navigation.toggleDrawer()}>
+          <Icon name="menu" type="simple-line-icon" color={Colors.textColor} />
+        </Pressable>
+      ),
+    });
+  }, [navigation]);
 
   useEffect(() => {
     // Clear the error message before removing the screen

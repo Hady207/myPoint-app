@@ -5,7 +5,7 @@ import {useFormikContext} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 
 import {Button} from '@components/atoms';
-import {FormInput} from '@components/molecules';
+import {FormInput, ErrorMessage} from '@components/molecules';
 import loginSelectors from '@containers/Authentication/Login/selectors';
 import {Scale} from '@styles';
 
@@ -28,7 +28,7 @@ const LoginForm = () => {
       />
 
       <FormInput fieldName="password" placeholder="Password" />
-
+      {errorMessage && <ErrorMessage message={errorMessage} />}
       <Button
         disabled={submitDisabled}
         onPress={submitForm}

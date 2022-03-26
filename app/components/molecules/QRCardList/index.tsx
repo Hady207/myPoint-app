@@ -1,6 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Image, T} from '@components/atoms';
+import spacetime from 'spacetime';
 import {Colors} from '@styles';
 
 const QRCardList = ({item}) => (
@@ -12,7 +13,10 @@ const QRCardList = ({item}) => (
       }}
       resizeMode="contain"
     />
-    <T text={item?.bookingDate} />
+    <View style={styles.textContainer}>
+      <T text={item?.store?.name} textStyle={styles.storeNameTextStyle} />
+      <T text={spacetime(item?.bookingDate).format('numeric-uk')} />
+    </View>
   </View>
 );
 
@@ -20,14 +24,17 @@ export default QRCardList;
 
 const styles = StyleSheet.create({
   qrContainer: {
-    // padding: 12,
-    flex: 1,
     flexDirection: 'row',
     borderBottomColor: Colors.lightGrey,
-    borderBottomWidth: 2,
-    // marginBottom: 5,
-    justifyContent: 'space-evenly',
+    borderBottomWidth: 5,
     alignItems: 'center',
   },
   qrImageStyle: {borderRadius: 0, height: 150, width: 150},
+
+  textContainer: {marginLeft: 10},
+
+  storeNameTextStyle: {
+    marginBottom: 10,
+    textTransform: 'capitalize',
+  },
 });

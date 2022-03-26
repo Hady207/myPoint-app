@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, Keyboard} from 'react-native';
+import React, {useEffect, useLayoutEffect} from 'react';
+import {StyleSheet, Keyboard, Pressable} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-
+import {Icon} from 'react-native-elements';
 // import {useYup} from '@hooks';
-import {Button} from '@components/atoms';
+
 import {LoginForm} from '@components/organisms';
 import {Colors, Scale} from '@styles';
 import {LoginActions} from './reducer';
@@ -15,6 +15,18 @@ const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   // const {loginFormSchema} = useYup();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Pressable
+          style={{marginLeft: 10}}
+          onPress={() => navigation.toggleDrawer()}>
+          <Icon name="menu" type="simple-line-icon" color={Colors.textColor} />
+        </Pressable>
+      ),
+    });
+  }, [navigation]);
 
   // FormikInitialValues
   const loginFormikValues = {
@@ -47,7 +59,6 @@ const Login = () => {
         onSubmit={handleLogin}>
         <LoginForm />
       </Formik>
-      <Button onPress={() => navigation.navigate('Home')} />
     </KeyboardAwareScrollView>
   );
 };

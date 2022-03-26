@@ -25,20 +25,12 @@ function* loginSaga(action: any) {
 
       yield put(LoginActions.loginSuccess());
       yield call(navigate, 'Home');
-    } else if (response.data.error.message === 'login failed') {
-      yield put(LoginActions.loginFail('login_failed'));
-      // const fcrash = yield call(crashlytics);
-      // console.log(fcrash);
-      // yield call(() => crashlytics().log(response.data.error.message));
-
-      // yield call(fcrash.log, response.data.error.message);
-      // crashlytics().log(response.data.error.message);
     } else {
-      yield put(LoginActions.loginFail(response.data.error.message));
+      yield put(LoginActions.loginFail(response.data.message));
       // crashlytics().log(response.data.error.message);
     }
   } catch (error) {
-    yield put(LoginActions.loginFail(error.message));
+    console.log(error);
   }
 }
 

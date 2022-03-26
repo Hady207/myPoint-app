@@ -5,6 +5,7 @@ export const {Types: RootScreenTypes, Creators: RootScreenActions} =
     startUp: null,
     signIn: ['user', 'token'],
     userProfile: ['user'],
+    restoreUser: ['accessToken', 'userId'],
     signOut: null,
   });
 

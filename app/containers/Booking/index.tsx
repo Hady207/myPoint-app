@@ -18,25 +18,23 @@ const Booking = () => {
   const [dateSelected, setDateSelected] = useState('');
   const [timeSelected, setTimeSelected] = useState<string>('');
 
-  console.log(params);
-
-  const showDatePicker = mode => {
+  const showDatePicker = (modeOption: string) => {
     setDatePickerVisibility(true);
-    setMode(mode);
+    setMode(modeOption);
   };
 
   const hideDatePicker = () => {
     setDatePickerVisibility(false);
   };
 
-  const handleDateConfirm = date => {
+  const handleDateConfirm = selectedData => {
     // console.warn('A date has been picked: ', date);
     if (mode === 'date') {
-      setDateSelected(date);
+      setDateSelected(selectedData);
     } else {
-      setTimeSelected(date);
+      setTimeSelected(selectedData);
     }
-    console.log(date);
+    console.log(selectedData);
     hideDatePicker();
   };
 
@@ -48,7 +46,7 @@ const Booking = () => {
   return (
     <Container>
       <View style={styles.mainContainer}>
-        <T text="Please Pick a suitable time for you" size={19} />
+        <T text="Please pick a suitable time for you" size={19} />
       </View>
       <Pressable
         onPress={() => showDatePicker('date')}
@@ -66,7 +64,7 @@ const Booking = () => {
       <Pressable
         onPress={() => showDatePicker('time')}
         style={[styles.dropdownStyle, !!!timeSelected && styles.fullBorder]}>
-        <T text="Show Time Picker" color="white" />
+        <T text="Show Time Picker" color="white" size={16} />
         <Icon type="entypo" name="chevron-down" color="white" />
       </Pressable>
 
@@ -84,6 +82,7 @@ const Booking = () => {
         isVisible={isDatePickerVisible}
         mode={mode}
         onConfirm={handleDateConfirm}
+        minimumDate={new Date()}
         onCancel={hideDatePicker}
       />
     </Container>

@@ -1,7 +1,7 @@
 import {call, takeLatest, put} from 'redux-saga/effects';
 import {RootScreenActions, RootScreenTypes} from './reducer';
 
-export function* getAuthenticatedUser({userId}) {
+export function* getAuthenticatedUser({userId, accessToken}) {
   try {
     console.log('startup');
   } catch (error) {
@@ -10,5 +10,5 @@ export function* getAuthenticatedUser({userId}) {
 }
 
 export default function* rootScreenSaga() {
-  yield takeLatest(RootScreenTypes.START_UP, getAuthenticatedUser);
+  yield takeLatest(RootScreenTypes.RESTORE_USER, getAuthenticatedUser);
 }

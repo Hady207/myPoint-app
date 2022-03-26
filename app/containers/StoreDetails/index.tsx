@@ -17,24 +17,22 @@ const StoreDetails = () => {
           borderBottomRightRadius: 10,
         }}
         source={{
-          uri: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1776&q=80',
+          uri: params?.store?.image,
         }}
+        resizeMode="contain"
       />
-      <View style={{marginTop: 20}}>
-        <T text="storeName" />
-        <T text="storeName" />
-        <T text="storeName" />
-        <T text="storeName" />
-        <T text="storeName" />
-        <T text="storeName" />
-        <T text="storeName" />
-        <T text="storeName" />
+      <View style={{marginTop: 20, borderTopWidth: 2, paddingTop: 20}}>
+        <T text={params?.store?.name} />
+        <View style={{flexDirection: 'row'}}>
+          <T text="Category: " />
+          <T text={params?.store?.category} />
+        </View>
       </View>
       <View
         style={{flex: 1, justifyContent: 'flex-end', paddingHorizontal: 10}}>
         <Button
           onPress={() =>
-            navigation.navigate('BookingScreen', {storeId: params.param._id})
+            navigation.navigate('BookingScreen', {storeId: params.store._id})
           }
           title="Book Now"
         />

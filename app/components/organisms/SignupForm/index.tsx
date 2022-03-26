@@ -6,7 +6,7 @@ import {useFormikContext} from 'formik';
 import signupSelectors from '@containers/Authentication/Signup/selectors';
 
 import {Button} from '@components/atoms';
-import {FormInput} from '@components/molecules';
+import {FormInput, ErrorMessage} from '@components/molecules';
 
 const SignupForm = () => {
   const {submitForm, isValid} = useFormikContext();
@@ -22,6 +22,8 @@ const SignupForm = () => {
       />
 
       <FormInput fieldName="password" placeholder="Password" />
+
+      {errorMessage && <ErrorMessage message={errorMessage} />}
 
       <Button
         disabled={submitDisabled}

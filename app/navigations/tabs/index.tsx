@@ -31,7 +31,7 @@ const AdminTabs = () => {
         options={{
           tabBarLabel: 'Barcode Scanner',
           tabBarIcon: props => (
-            <Icon name="barcode" type="ant-design" {...props} />
+            <Icon name="ios-qr-code-outline" type="ionicon" {...props} />
           ),
         }}
       />

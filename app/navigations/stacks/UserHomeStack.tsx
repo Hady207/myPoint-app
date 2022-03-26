@@ -1,17 +1,19 @@
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Header} from '@atoms';
+
 import HomeScreen from '@containers/Home';
 import StoreScreen from '@containers/StoreDetails';
 import BookingScreen from '@containers/Booking';
 import QRCodeScreen from '@containers/QRCode';
+import {Pressable} from 'react-native';
+import {CustomNavButton, Header} from '@components/atoms';
 
 const Stack = createNativeStackNavigator();
 // const Stack = createSharedElementStackNavigator();
 
 // add screen or navigators that shouldn't have bottom bar here
-const UserHomeStack = () => {
+const UserHomeStack = ({navigation}) => {
   const headerOptions = {
     headerTitle: '',
     headerStyle: {elevation: 0, shadowOpacity: 0},
@@ -21,7 +23,7 @@ const UserHomeStack = () => {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{header: () => <Header title="myPoint" />}}
+        options={{header: () => <Header title="myPoint" homeScreen />}}
       />
       <Stack.Screen
         name="StoreScreen"
@@ -36,7 +38,13 @@ const UserHomeStack = () => {
       <Stack.Screen
         name="QRcodeScreen"
         component={QRCodeScreen}
-        options={headerOptions}
+        options={{
+          ...headerOptions,
+          headerLeft: props => <Pressable disabled />,
+          headerRight: props => (
+            <CustomNavButton icon="md-close" size={30} {...props} />
+          ),
+        }}
       />
     </Stack.Navigator>
   );
