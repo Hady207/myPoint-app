@@ -5,6 +5,7 @@ export const {Types: RootScreenTypes, Creators: RootScreenActions} =
     startUp: null,
     signIn: ['user', 'token'],
     userProfile: ['user'],
+    latestBookInfo: ['data'],
     restoreUser: ['accessToken', 'userId'],
     signOut: null,
   });
@@ -12,6 +13,7 @@ export const {Types: RootScreenTypes, Creators: RootScreenActions} =
 export const initialState = {
   isLoading: false,
   userProfile: null,
+  latestBookInfo: null,
   token: null,
   errorMessage: null,
 };
@@ -28,6 +30,9 @@ export const rootScreenReducer = (state = initialState, action) => {
         userProfile: action.user,
         token: action.token,
       };
+
+    case RootScreenTypes.LATEST_BOOK_INFO:
+      return {...state, latestBookInfo: action.data};
 
     case RootScreenTypes.SIGN_OUT:
       return initialState;

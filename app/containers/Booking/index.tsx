@@ -1,6 +1,6 @@
 import {StyleSheet, View, Pressable} from 'react-native';
 import React, {useState} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 import spacetime from 'spacetime';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {Icon} from 'react-native-elements';
@@ -10,7 +10,6 @@ import {useDispatch} from 'react-redux';
 import {BookActions} from './reducer';
 
 const Booking = () => {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const {params} = useRoute();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -27,7 +26,7 @@ const Booking = () => {
     setDatePickerVisibility(false);
   };
 
-  const handleDateConfirm = selectedData => {
+  const handleDateConfirm = (selectedData: any) => {
     // console.warn('A date has been picked: ', date);
     if (mode === 'date') {
       setDateSelected(selectedData);
@@ -40,7 +39,7 @@ const Booking = () => {
 
   const handleBookConfirm = () => {
     dispatch(BookActions.bookReq(params.storeId, dateSelected, timeSelected));
-    navigation.navigate('QRcodeScreen');
+    // navigation.navigate('QRcodeScreen');
   };
 
   return (

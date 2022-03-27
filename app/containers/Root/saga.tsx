@@ -5,7 +5,7 @@ export function* getAuthenticatedUser({userId, accessToken}) {
   try {
     console.log('startup');
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
 }
 

@@ -1,7 +1,7 @@
 import {put, call, takeLatest} from 'redux-saga/effects';
 
 import {storageWrite} from '@utils/storageUtils';
-import {navigate, navigateBack} from '@utils/navigationUtils';
+import {navigate} from '@utils/navigationUtils';
 import {RootScreenActions} from '@containers/Root/reducer';
 import {loginService} from '@services/auth';
 import {LoginTypes, LoginActions} from './reducer';

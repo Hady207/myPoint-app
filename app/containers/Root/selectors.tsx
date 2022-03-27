@@ -15,11 +15,15 @@ export const selectUserProfile = () =>
 export const selectErrorMessage = () =>
   createSelector(rootScreenSelector, substate => substate.error);
 
+export const selectLatestBooking = () =>
+  createSelector(rootScreenSelector, substate => substate.latestBookInfo);
+
 const rootSelectors = createStructuredSelector({
   accessToken: selectAccessToken(),
   isLoading: selectIsloading(),
   userProfile: selectUserProfile(),
   errorMessage: selectErrorMessage(),
+  latestBookingInfo: selectLatestBooking(),
 });
 
 export default rootSelectors;
