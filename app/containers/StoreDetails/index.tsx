@@ -21,11 +21,20 @@ const StoreDetails = () => {
         }}
         resizeMode="contain"
       />
-      <View style={{marginTop: 20, borderTopWidth: 2, paddingTop: 20}}>
-        <T text={params?.store?.name} />
-        <View style={{flexDirection: 'row'}}>
-          <T text="Category: " />
-          <T text={params?.store?.category} />
+      <View
+        style={{
+          marginTop: 20,
+          borderTopWidth: 1,
+          paddingTop: 20,
+          paddingHorizontal: 10,
+        }}>
+        <T text={params?.store?.name} textStyle={{fontSize: 20}} />
+        <View style={{flexDirection: 'row', marginTop: 10}}>
+          <T text="Category: " textStyle={{fontSize: 20}} />
+          <T
+            text={params?.store?.category}
+            textStyle={{fontSize: 20, textTransform: 'capitalize'}}
+          />
         </View>
       </View>
       <View
