@@ -5,17 +5,21 @@ import {
   Camera,
   useFrameProcessor,
 } from 'react-native-vision-camera';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Barcode, BarcodeFormat, scanBarcodes} from 'vision-camera-code-scanner';
 import {useIsFocused} from '@react-navigation/native';
 import {runOnJS} from 'react-native-reanimated';
 import {T} from '@components/atoms';
-import {Colors} from '@styles';
+import {SuccessModal} from '@components/molecules';
+import {Colors} from '@styles/index';
 import {ScannerActions} from './reducer';
+import ScanningSelectors from './selectors';
 
 const QRScanner = () => {
   const [useCamera, setUseCamera] = useState<boolean>(false);
   const [barcodes, setBarcodes] = useState<Barcode[]>([]);
+  const {modalState, isLoading, errorMessage, successMessage} =
+    useSelector(ScanningSelectors);
   const dispatch = useDispatch();
   const devices = useCameraDevices();
   const isFocused = useIsFocused();
@@ -60,11 +64,22 @@ const QRScanner = () => {
       <View style={styles.qrSquarContainer}>
         <View style={styles.qrcodeScanner} />
       </View>
+
       {barcodes.map((barcode, idx) => (
         <Text key={idx} style={styles.barcodeTextURL}>
           {barcode.displayValue}
         </Text>
       ))}
+
+      <SuccessModal
+        visible={modalState}
+        visibleFun={() => dispatch(ScannerActions.toggleShowModal())}
+        title="Please wait scanning in progress"
+        loading={isLoading}
+        failed={errorMessage}
+        failedMessage={errorMessage}
+        successMessage={successMessage}
+      />
     </View>
   );
 };

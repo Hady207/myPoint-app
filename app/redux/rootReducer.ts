@@ -6,6 +6,8 @@ import {loginReducer as login} from '@containers/Authentication/Login/reducer';
 import {signupReducer as signup} from '@containers/Authentication/Signup/reducer';
 import {bookingReducer as booking} from '@containers/Booking/reducer';
 import {myBookingsReducer as myBookings} from '@containers/MyBookings/reducer';
+import {qrScannerReducer as qrScanner} from '@containers/QRScanner/reducer';
+import {analyticsScreenReducer as analytics} from '@containers/Analytics/reducer';
 
 const rootReducer = combineReducers({
   root,
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   signup,
   booking,
   myBookings,
+  qrScanner,
+  analytics,
 });
 
 export default rootReducer;

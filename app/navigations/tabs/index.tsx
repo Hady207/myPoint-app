@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Icon} from 'react-native-elements';
-import DataChartsScreen from '@containers/DataCharts';
+import AnalyticsScreen from '@containers/Analytics';
 import QRScannerScreen from '@containers/QRScanner';
 import BookCalendar from '@containers/BookCalendar';
 import {Colors} from '@styles';
@@ -17,7 +17,7 @@ const AdminTabs = () => {
       screenOptions={{tabBarHideOnKeyboard: true, headerShown: false}}>
       <Tab.Screen
         name="AdminHome"
-        component={DataChartsScreen}
+        component={AnalyticsScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: props => (

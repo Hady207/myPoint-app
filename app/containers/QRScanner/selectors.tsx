@@ -12,10 +12,14 @@ export const selectSuccessMessage = () =>
 export const selectErrorMessage = () =>
   createSelector(qrScannerSelector, substate => substate.errorMessage);
 
+export const selectModalState = () =>
+  createSelector(qrScannerSelector, substate => substate.showModal);
+
 const rootSelectors = createStructuredSelector({
   isLoading: selectIsloading(),
-  succcessMessage: selectSuccessMessage(),
+  successMessage: selectSuccessMessage(),
   errorMessage: selectErrorMessage(),
+  modalState: selectModalState(),
 });
 
 export default rootSelectors;

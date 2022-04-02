@@ -4,19 +4,22 @@ export const {Types: ScannerTypes, Creators: ScannerActions} = createActions({
   scanBarcode: ['scanBody'],
   scanBarcodeSuccess: ['successMessage'],
   scanBarcodeFail: ['errorMessage'],
+  toggleShowModal: null,
   clearScanMessage: null,
+  hideModal: null,
 });
 
 export const initialState = {
   isLoading: false,
   successMessage: null,
   errorMessage: null,
+  showModal: false,
 };
 
-export const rootScreenReducer = (state = initialState, action) => {
+export const qrScannerReducer = (state = initialState, action) => {
   switch (action.type) {
     case ScannerTypes.SCAN_BARCODE:
-      return {...state, isLoading: true};
+      return {...state, showModal: true, isLoading: true};
 
     case ScannerTypes.SCAN_BARCODE_SUCCESS:
       return {
@@ -25,8 +28,14 @@ export const rootScreenReducer = (state = initialState, action) => {
         successMessage: action.successMessage,
       };
 
+    case ScannerTypes.TOGGLE_SHOW_MODAL:
+      return {...state, showModal: !state.showModal};
+
     case ScannerTypes.SCAN_BARCODE_FAIL:
       return {...state, isLoading: false, errorMessage: action.errorMessage};
+
+    case ScannerTypes.HIDE_MODAL:
+      return {...state, isLoading: false, showModal: false};
 
     case ScannerTypes.CLEAR_SCAN_MESSAGE:
       return initialState;
