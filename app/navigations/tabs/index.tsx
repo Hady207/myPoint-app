@@ -29,7 +29,7 @@ const AdminTabs = () => {
         name="AdminBarcode"
         component={QRScannerScreen}
         options={{
-          tabBarLabel: 'Barcode Scanner',
+          tabBarLabel: 'QR Scanner',
           tabBarIcon: props => (
             <Icon name="ios-qr-code-outline" type="ionicon" {...props} />
           ),
