@@ -6,6 +6,7 @@ import {RootScreenActions} from './reducer';
 
 const RootScreen = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
@@ -26,6 +27,7 @@ const RootScreen = () => {
     };
     bootstrapAsync();
   }, [dispatch]);
+
   return <RootNavigator />;
 };
 

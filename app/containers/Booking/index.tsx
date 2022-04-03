@@ -33,7 +33,7 @@ const Booking = () => {
     } else {
       setTimeSelected(selectedData);
     }
-    console.log(selectedData);
+
     hideDatePicker();
   };
 
