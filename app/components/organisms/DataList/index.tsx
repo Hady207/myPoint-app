@@ -13,7 +13,7 @@ const DataList = () => {
   const renderItem = ({item}: {item: {}}) => <DataBox item={item} />;
   return (
     <View>
-      <T text="Data" textStyle={{marginVertical: 10, fontSize: 21}} />
+      {/* <T text="Data" textStyle={{marginVertical: 10, fontSize: 21}} /> */}
       <FlatList
         // numColumns={1}
         contentContainerStyle={{flexGrow: 1}}

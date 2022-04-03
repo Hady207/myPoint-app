@@ -15,14 +15,14 @@ const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June'],
   datasets: [
     {
-      data: [20, 45, 28, 80, 99, 43],
+      data: [100, 45, 28, 80, 99, 43],
     },
   ],
 };
 
 const dataPie = {
-  // labels: ['Swim', 'Bike', 'Run'], // optional
-  data: [0.4, 0.6, 0.8],
+  labels: ['Scanned', 'Not Scanned'], // optional
+  data: [0.4, 0.6],
 };
 
 const chartConfig = {
@@ -33,10 +33,10 @@ const chartConfig = {
   color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
   labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
   style: {
-    borderRadius: 16,
+    borderRadius: 12,
   },
   propsForDots: {
-    r: '6',
+    r: '4',
     strokeWidth: '2',
     stroke: '#ffa726',
   },

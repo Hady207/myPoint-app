@@ -7,6 +7,7 @@ import bookingSaga from '@containers/Booking/saga';
 import myBookingsSaga from '@containers/MyBookings/saga';
 import qrScannerSaga from '@containers/QRScanner/saga';
 import analyticsSaga from '@containers/Analytics/saga';
+import calendarSaga from '@containers/BookCalendar/saga';
 
 export default function* root() {
   yield fork(rootSaga);
@@ -17,4 +18,5 @@ export default function* root() {
   yield fork(myBookingsSaga);
   yield fork(qrScannerSaga);
   yield fork(analyticsSaga);
+  yield fork(calendarSaga);
 }

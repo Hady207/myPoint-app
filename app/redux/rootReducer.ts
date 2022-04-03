@@ -8,6 +8,7 @@ import {bookingReducer as booking} from '@containers/Booking/reducer';
 import {myBookingsReducer as myBookings} from '@containers/MyBookings/reducer';
 import {qrScannerReducer as qrScanner} from '@containers/QRScanner/reducer';
 import {analyticsScreenReducer as analytics} from '@containers/Analytics/reducer';
+import {bookingCalendarReducer as calendar} from '@containers/BookCalendar/reducer';
 
 const rootReducer = combineReducers({
   root,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   myBookings,
   qrScanner,
   analytics,
+  calendar,
 });
 
 export default rootReducer;

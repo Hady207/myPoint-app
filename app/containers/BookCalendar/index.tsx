@@ -2,10 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {Container} from '@components/atoms';
+import {Colors} from '@styles/index';
 
 const BookCalendar = () => {
-  const vacation = {key: 'vacation', color: 'red', selectedDotColor: 'blue'};
-  const massage = {key: 'massage', color: 'blue', selectedDotColor: 'blue'};
+  const vacation = {key: 'vacation', color: 'red', selectedDotColor: 'red'};
+  const massage = {key: 'massage', color: 'blue', selectedDotColor: 'yellow'};
   const workout = {key: 'workout', color: 'green'};
 
   return (
@@ -30,18 +31,22 @@ const BookCalendar = () => {
         }}
         markingType={'multi-dot'}
         markedDates={{
-          '2022-01-25': {
-            dots: [vacation, massage, workout],
+          '2022-04-25': {
+            // dots: [vacation, massage, workout],
             selected: true,
-            selectedColor: '#FF1493',
+            selectedColor: Colors.primaryColor,
           },
-          '2022-01-26': {dots: [massage, workout]},
+          '2022-04-26': {
+            // dots: [massage, workout],
+            selected: true,
+            selectedColor: Colors.primaryColor,
+          },
         }}
         // day from another month that is visible in calendar page. Default = false
         // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
-        firstDay={1}
+        firstDay={0}
         // Show week numbers to the left. Default = false
-        showWeekNumbers={true}
+        // showWeekNumbers={true}
         // Handler which gets executed when press arrow icon left. It receive a callback can go back month
         // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
         disableAllTouchEventsForDisabledDays={true}
