@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Header} from '@atoms';
+import {Header} from '@atoms/index';
 import AdminTabs from '../tabs';
+import QRStatusScreen from '@containers/QRStatusScreen';
 
 const Stack = createNativeStackNavigator();
 // const Stack = createSharedElementStackNavigator();
@@ -19,6 +20,11 @@ const UserHomeStack = () => {
         name="AdminHomeScreen"
         component={AdminTabs}
         options={{header: () => <Header title="myPoint" />}}
+      />
+      <Stack.Screen
+        name="QRStatusScreen"
+        component={QRStatusScreen}
+        options={{headerTitle: ''}}
       />
     </Stack.Navigator>
   );

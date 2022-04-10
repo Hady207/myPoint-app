@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {Colors, Scale} from '@styles';
+import {Colors, Scale} from '@styles/index';
 
 type TProps = {
   textStyle?: {};
-  text: string;
+  text: any;
   color?: string;
   size?: number;
 };

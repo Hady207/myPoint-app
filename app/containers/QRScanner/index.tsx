@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
   useCameraDevices,
@@ -7,7 +7,7 @@ import {
 } from 'react-native-vision-camera';
 import {useDispatch, useSelector} from 'react-redux';
 import {Barcode, BarcodeFormat, scanBarcodes} from 'vision-camera-code-scanner';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {runOnJS} from 'react-native-reanimated';
 import {T} from '@components/atoms';
 import {SuccessModal} from '@components/molecules';
@@ -18,6 +18,7 @@ import ScanningSelectors from './selectors';
 const QRScanner = () => {
   const [useCamera, setUseCamera] = useState<boolean>(false);
   const [barcodes, setBarcodes] = useState<Barcode[]>([]);
+  const navigation = useNavigation();
   const {modalState, isLoading, errorMessage, successMessage} =
     useSelector(ScanningSelectors);
   const dispatch = useDispatch();
@@ -42,8 +43,16 @@ const QRScanner = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(ScannerActions.scanBarcode(barcodes[barcodes.length - 1]));
-  }, [barcodes, dispatch]);
+    if (barcodes.length > 0 && barcodes[0]?.displayValue) {
+      navigation.navigate('QRStatusScreen', {
+        displayValue: barcodes[0]?.displayValue,
+      });
+    }
+  }, [barcodes]);
+
+  // useEffect(() => {
+  //   navigation.navigate('QRStatusScreen');
+  // }, []);
 
   if (!useCamera || devices?.back == null) {
     return (
@@ -65,11 +74,11 @@ const QRScanner = () => {
         <View style={styles.qrcodeScanner} />
       </View>
 
-      {barcodes.map((barcode, idx) => (
+      {/* {barcodes.map((barcode, idx) => (
         <Text key={idx} style={styles.barcodeTextURL}>
           {barcode.displayValue}
         </Text>
-      ))}
+      ))} */}
 
       <SuccessModal
         visible={modalState}

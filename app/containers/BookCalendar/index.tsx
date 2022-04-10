@@ -1,50 +1,39 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import React, {useState} from 'react';
+import {StyleSheet} from 'react-native';
+import {Calendar} from 'react-native-calendars';
+import {useSelector} from 'react-redux';
 import {Container} from '@components/atoms';
+import {CalendarModal} from '@components/molecules';
 import {Colors} from '@styles/index';
+import BookCalendarSelector from './selectors';
 
 const BookCalendar = () => {
   const vacation = {key: 'vacation', color: 'red', selectedDotColor: 'red'};
   const massage = {key: 'massage', color: 'blue', selectedDotColor: 'yellow'};
   const workout = {key: 'workout', color: 'green'};
 
+  const [open, setOpen] = useState(false);
+  const [selectedDateString, setSelectDateString] = useState<string>();
+  const {calendarDates, bookings} = useSelector(BookCalendarSelector);
+
+  const bNum = bookings.filter(
+    (d: any) => d.bookingDate === selectedDateString,
+  );
+
   return (
     <Container>
       <Calendar
-        // Initially visible month. Default = now
-        // current={'2022-01-04'}
-        // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-        // Handler which gets executed on day press. Default = undefined
         onDayPress={day => {
-          console.log('selected day', day);
-        }}
-        // Handler which gets executed on day long press. Default = undefined
-        onDayLongPress={day => {
-          console.log('selected day', day);
+          if (day?.dateString in calendarDates) {
+            setOpen(!open);
+            setSelectDateString(day?.dateString);
+          }
         }}
         // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-        monthFormat={'yyyy MM'}
+        monthFormat={'MMMM yyyy'}
         // Handler which gets executed when visible month changes in calendar. Default = undefined
-        onMonthChange={month => {
-          console.log('month changed', month);
-        }}
         markingType={'multi-dot'}
-        markedDates={{
-          '2022-04-25': {
-            // dots: [vacation, massage, workout],
-            selected: true,
-            selectedColor: Colors.primaryColor,
-          },
-          '2022-04-26': {
-            // dots: [massage, workout],
-            selected: true,
-            selectedColor: Colors.primaryColor,
-          },
-        }}
-        // day from another month that is visible in calendar page. Default = false
-        // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
-        firstDay={0}
+        markedDates={calendarDates}
         // Show week numbers to the left. Default = false
         // showWeekNumbers={true}
         // Handler which gets executed when press arrow icon left. It receive a callback can go back month
@@ -54,6 +43,12 @@ const BookCalendar = () => {
 
         // Enable the option to swipe between months. Default = false
         enableSwipeMonths={true}
+      />
+      <CalendarModal
+        visible={open}
+        visibleFun={() => setOpen(!open)}
+        selectedDate={selectedDateString}
+        numberOfBookings={bNum.length}
       />
     </Container>
   );

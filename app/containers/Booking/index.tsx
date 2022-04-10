@@ -29,9 +29,11 @@ const Booking = () => {
   const handleDateConfirm = (selectedData: any) => {
     // console.warn('A date has been picked: ', date);
     if (mode === 'date') {
-      setDateSelected(selectedData);
+      setDateSelected(
+        spacetime(selectedData).format('{year}-{iso-month}-{date-pad}'),
+      );
     } else {
-      setTimeSelected(selectedData);
+      setTimeSelected(spacetime(selectedData).format('time'));
     }
 
     hideDatePicker();
@@ -56,7 +58,7 @@ const Booking = () => {
 
       {!!dateSelected && (
         <View style={styles.dropdownChoice}>
-          <T text={spacetime(dateSelected).format('numeric-uk')} size={16} />
+          <T text={dateSelected} size={16} />
         </View>
       )}
 
@@ -69,7 +71,7 @@ const Booking = () => {
 
       {!!timeSelected && (
         <View style={styles.dropdownChoice}>
-          <T text={spacetime(timeSelected).format('time')} size={16} />
+          <T text={timeSelected} size={16} />
         </View>
       )}
 

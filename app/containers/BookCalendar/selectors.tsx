@@ -1,6 +1,8 @@
 import {createSelector, createStructuredSelector} from 'reselect';
+import {Colors} from '@styles/index';
 import {initalState} from './reducer';
 
+const analyticsScreenSelector = (state: any) => state.analytics ?? initalState;
 const calendarRootSelector = (state: any) => state.calendar ?? initalState;
 
 export const selectIsloading = () =>
@@ -9,9 +11,30 @@ export const selectIsloading = () =>
 export const selectErrorMessage = () =>
   createSelector(calendarRootSelector, substate => substate.errorMessage);
 
+export const selectCalendar = () =>
+  createSelector(analyticsScreenSelector, substate => {
+    const dates = {};
+    substate?.adminStore?.bookings.forEach(
+      (d: any) =>
+        (dates[d.bookingDate] = {
+          selected: true,
+          selectedColor: Colors.primaryColor,
+        }),
+    );
+    return dates;
+  });
+
+export const selectBookings = () =>
+  createSelector(
+    analyticsScreenSelector,
+    substate => substate?.adminStore?.bookings,
+  );
+
 const bookingSelectors = createStructuredSelector({
   isLoading: selectIsloading(),
   errorMessage: selectErrorMessage(),
+  calendarDates: selectCalendar(),
+  bookings: selectBookings(),
 });
 
 export default bookingSelectors;

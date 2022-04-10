@@ -6,8 +6,9 @@ export function* scanBarcodeSaga(action) {
   try {
     const postBody = {id: action.scanBody};
     const response = yield call(scanTicketService, postBody);
+
     if (response.ok) {
-      yield put(ScannerActions.scanBarcodeSuccess('QR code Scanner'));
+      yield put(ScannerActions.scanBarcodeSuccess('QR code Scanned'));
     } else {
       yield put(ScannerActions.scanBarcodeFail('Unauthorized Scan'));
     }

@@ -1,26 +1,17 @@
 import React from 'react';
-import {StyleSheet, ScrollView, View, FlatList} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
+import {useSelector} from 'react-redux';
+import {AnalyticBox} from '@components/molecules';
 
-import {DataBox} from '@components/molecules';
-import {T} from '@components/atoms';
-import {useNavigation} from '@react-navigation/native';
+import AnalyticsSelectors from '@containers/Analytics/selectors';
 
 const DataList = () => {
-  const navigation = useNavigation();
-  const handleNavigation = (param: {}) => {
-    navigation.navigate('StoreScreen', {param});
-  };
-  const renderItem = ({item}: {item: {}}) => <DataBox item={item} />;
+  const {yearlyData, hourlyData} = useSelector(AnalyticsSelectors);
   return (
-    <View>
-      {/* <T text="Data" textStyle={{marginVertical: 10, fontSize: 21}} /> */}
-      <FlatList
-        // numColumns={1}
-        contentContainerStyle={{flexGrow: 1}}
-        data={[{model: 'linear'}, {model: 'piechart'}, {model: 'barchart'}]}
-        renderItem={renderItem}
-      />
-    </View>
+    <ScrollView>
+      <AnalyticBox item={{model: 'linear'}} data={yearlyData} />
+      <AnalyticBox item={{model: 'piechart'}} data={hourlyData} />
+    </ScrollView>
   );
 };
 
