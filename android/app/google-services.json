@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "127529536759",
+    "project_id": "my-point-eddef",
+    "storage_bucket": "my-point-eddef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127529536759:android:1ee08d85532890b52297f2",
+        "android_client_info": {
+          "package_name": "com.mypoint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127529536759-ov7gkaurkm7ck9417t44tljabvrvvuh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbRWreozG0JsbLit8XolvKO7kHmoJDi9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127529536759-ov7gkaurkm7ck9417t44tljabvrvvuh8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

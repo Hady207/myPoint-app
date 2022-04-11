@@ -5,6 +5,7 @@ export const {Types: RootScreenTypes, Creators: RootScreenActions} =
     startUp: null,
     signIn: ['user', 'token'],
     userProfile: ['user'],
+    saveFCM: ['userId', 'fcm'],
     latestBookInfo: ['data'],
     restoreUser: ['accessToken', 'userId'],
     signOut: null,
