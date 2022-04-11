@@ -23,23 +23,6 @@ const dataPie = {
   data: [0.4, 0.6],
 };
 
-const dataPieChart = [
-  {
-    name: 'Seoul',
-    population: 0,
-    color: 'rgba(131, 167, 234, 1)',
-    legendFontColor: Colors.background,
-    legendFontSize: 15,
-  },
-  {
-    name: 'Toronto',
-    population: 2800000,
-    color: '#F00',
-    legendFontColor: Colors.background,
-    legendFontSize: 15,
-  },
-];
-
 const chartConfig = {
   backgroundColor: Colors.primaryColor,
   backgroundGradientFrom: Colors.primaryColor,
@@ -108,8 +91,6 @@ const DataBox = ({item, data, ...props}) => {
             // bezier
             style={{
               marginVertical: 8,
-              // borderRadius: 16,
-              // paddingHorizontal: 10,
             }}
           />
         </View>
@@ -209,10 +190,7 @@ const DataBox = ({item, data, ...props}) => {
             data={dataPie}
             width={windowWidth}
             height={Scale?.moderateScale(180)}
-            // strokeWidth={16}
-            // radius={32}
             chartConfig={progressConfig}
-            // hideLegend={false}
             style={styles.graphStyle}
           />
         </View>
