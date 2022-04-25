@@ -3,6 +3,7 @@ import {creatingTicketService} from '@services/booking';
 import {RootScreenActions} from '@containers/Root/reducer';
 import {navigate} from '@utils/navigationUtils';
 import {BookTypes, BookActions} from './reducer';
+import {storageWrite} from '@utils/storageUtils';
 
 function* bookingSaga({storeId, date, time}) {
   try {
@@ -13,12 +14,13 @@ function* bookingSaga({storeId, date, time}) {
     if (response.ok) {
       yield put(BookActions.bookResSuccess(response.data));
       yield put(RootScreenActions.latestBookInfo(response.data));
+      yield call(storageWrite, 'latestBookingInfo', response.data);
       yield call(navigate, 'QRcodeScreen');
     } else {
       yield put(BookActions.bookResFail(response.data?.error.message));
     }
   } catch (error) {
-    console.log(error);
+    yield put(BookActions.bookResFail(error.message));
   }
 }
 

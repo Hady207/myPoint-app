@@ -4,6 +4,7 @@ import {Calendar} from 'react-native-calendars';
 import {useSelector} from 'react-redux';
 import {Container} from '@components/atoms';
 import {CalendarModal} from '@components/molecules';
+import spacetime from 'spacetime';
 import {Colors} from '@styles/index';
 import BookCalendarSelector from './selectors';
 
@@ -17,7 +18,9 @@ const BookCalendar = () => {
   const {calendarDates, bookings} = useSelector(BookCalendarSelector);
 
   const bNum = bookings.filter(
-    (d: any) => d.bookingDate === selectedDateString,
+    (d: any) =>
+      spacetime(d.bookingDate).format('{year}-{iso-month}-{date-pad}') ===
+      selectedDateString,
   );
 
   return (

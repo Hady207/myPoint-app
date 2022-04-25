@@ -5,7 +5,7 @@ export const storageWrite = async (itemName, itemValue) => {
     const jsonItem = JSON.stringify(itemValue);
     await AsyncStorage.setItem(itemName, jsonItem);
   } catch (error) {
-    // console.log(`AsyncStorage error during saving ${itemName}:`, error);
+    console.log(`AsyncStorage error during saving ${itemName}:`, error);
   }
 };
 
@@ -14,7 +14,7 @@ export const storageRead = async itemName => {
     const jsonValue = await AsyncStorage.getItem(itemName);
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (error) {
-    // console.log(`AsyncStorage error during loading  ${itemName}:`, error);
+    console.log(`AsyncStorage error during loading  ${itemName}:`, error);
   }
 };
 
@@ -22,7 +22,7 @@ export const storageDelete = async itemName => {
   try {
     await AsyncStorage.removeItem(itemName);
   } catch (error) {
-    // console.log(`AsyncStorage error during deleting ${itemName}:`, error);
+    console.log(`AsyncStorage error during deleting ${itemName}:`, error);
   }
 };
 

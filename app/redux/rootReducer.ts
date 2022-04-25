@@ -5,6 +5,7 @@ import {homeReducer as home} from '@containers/Home/reducer';
 import {loginReducer as login} from '@containers/Authentication/Login/reducer';
 import {signupReducer as signup} from '@containers/Authentication/Signup/reducer';
 import {bookingReducer as booking} from '@containers/Booking/reducer';
+import {categoryReducer as category} from '@containers/CategoryView/reducer';
 import {myBookingsReducer as myBookings} from '@containers/MyBookings/reducer';
 import {qrScannerReducer as qrScanner} from '@containers/QRScanner/reducer';
 import {analyticsScreenReducer as analytics} from '@containers/Analytics/reducer';
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   login,
   signup,
   booking,
+  category,
   myBookings,
   qrScanner,
   analytics,

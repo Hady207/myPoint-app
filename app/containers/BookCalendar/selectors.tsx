@@ -1,4 +1,5 @@
 import {createSelector, createStructuredSelector} from 'reselect';
+import spacetime from 'spacetime';
 import {Colors} from '@styles/index';
 import {initalState} from './reducer';
 
@@ -16,7 +17,9 @@ export const selectCalendar = () =>
     const dates = {};
     substate?.adminStore?.bookings.forEach(
       (d: any) =>
-        (dates[d.bookingDate] = {
+        (dates[
+          spacetime(d.bookingDate).format('{year}-{iso-month}-{date-pad}')
+        ] = {
           selected: true,
           selectedColor: Colors.primaryColor,
         }),

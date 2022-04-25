@@ -2,7 +2,7 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Image, T} from '@components/atoms';
 import spacetime from 'spacetime';
-import {Colors} from '@styles';
+import {Colors} from '@styles/index';
 
 const QRCardList = ({item}) => (
   <View style={styles.qrContainer}>
@@ -16,6 +16,7 @@ const QRCardList = ({item}) => (
     <View style={styles.textContainer}>
       <T text={item?.store?.name} textStyle={styles.storeNameTextStyle} />
       <T text={spacetime(item?.bookingDate).format('numeric-uk')} />
+      <T text={spacetime(item?.bookingTime).format('time')} />
     </View>
   </View>
 );

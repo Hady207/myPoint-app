@@ -12,16 +12,19 @@ const RootScreen = () => {
 
   useEffect(() => {
     const requestUserPermission = async () => {
-      const authStatus = await messaging().requestPermission();
-      const enabled =
-        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+      try {
+        const authStatus = await messaging().requestPermission();
+        const enabled =
+          authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+          authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-      if (enabled) {
-        const userId = await storageRead('userId');
-        const fcmToken = await messaging().getToken();
-        console.log('_____fcmToken____', fcmToken);
-        dispatch(RootScreenActions.saveFCM(userId, fcmToken));
+        if (enabled) {
+          const userId = await storageRead('userId');
+          const fcmToken = await messaging().getToken();
+          dispatch(RootScreenActions.saveFCM(userId, fcmToken));
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
 

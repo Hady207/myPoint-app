@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from '@containers/Home';
 import StoreScreen from '@containers/StoreDetails';
+import CategoryScreen from '@containers/CategoryView';
 import BookingScreen from '@containers/Booking';
 import QRCodeScreen from '@containers/QRCode';
 import {Pressable} from 'react-native';
@@ -36,10 +37,16 @@ const UserHomeStack = ({navigation}) => {
         options={headerOptions}
       />
       <Stack.Screen
+        name="CategoryViewScreen"
+        component={CategoryScreen}
+        options={headerOptions}
+      />
+      <Stack.Screen
         name="QRcodeScreen"
         component={QRCodeScreen}
         options={{
           ...headerOptions,
+          title: 'QR Info',
           headerLeft: props => <Pressable disabled />,
           headerRight: props => (
             <CustomNavButton icon="md-close" size={30} {...props} />

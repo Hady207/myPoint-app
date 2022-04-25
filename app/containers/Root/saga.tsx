@@ -14,8 +14,7 @@ export function* getAuthenticatedUser({userId, accessToken}) {
 
 export function* saveFCMToken({userId, fcm}) {
   try {
-    const res = yield call(fcmService, userId, {fcmToken: fcm});
-    console.log(res);
+    yield call(fcmService, userId, {fcmToken: fcm});
   } catch (error) {
     console.log(error);
   }

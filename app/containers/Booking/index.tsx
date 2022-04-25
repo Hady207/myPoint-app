@@ -6,12 +6,17 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {Icon} from 'react-native-elements';
 import {T, Button, Container} from '@components/atoms';
 import {Colors} from '@styles/index';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {BookActions} from './reducer';
+import bookingSelectors from './selectors';
+import rootSelector from '@containers/Root/selectors';
+import {ErrorMessage} from '@components/molecules';
 
 const Booking = () => {
   const dispatch = useDispatch();
   const {params} = useRoute();
+  const {isLoading, errorMessage} = useSelector(bookingSelectors);
+  const {userProfile} = useSelector(rootSelector);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [mode, setMode] = useState<string>('date');
   const [dateSelected, setDateSelected] = useState('');
@@ -29,18 +34,17 @@ const Booking = () => {
   const handleDateConfirm = (selectedData: any) => {
     // console.warn('A date has been picked: ', date);
     if (mode === 'date') {
-      setDateSelected(
-        spacetime(selectedData).format('{year}-{iso-month}-{date-pad}'),
-      );
+      setDateSelected(selectedData);
     } else {
-      setTimeSelected(spacetime(selectedData).format('time'));
+      setTimeSelected(selectedData);
     }
 
     hideDatePicker();
   };
 
   const handleBookConfirm = () => {
-    dispatch(BookActions.bookReq(params.storeId, dateSelected, timeSelected));
+    userProfile?.id &&
+      dispatch(BookActions.bookReq(params.storeId, dateSelected, timeSelected));
     // navigation.navigate('QRcodeScreen');
   };
 
@@ -58,7 +62,12 @@ const Booking = () => {
 
       {!!dateSelected && (
         <View style={styles.dropdownChoice}>
-          <T text={dateSelected} size={16} />
+          <T
+            text={spacetime(dateSelected).format(
+              '{year}-{iso-month}-{date-pad}',
+            )}
+            size={16}
+          />
         </View>
       )}
 
@@ -71,12 +80,18 @@ const Booking = () => {
 
       {!!timeSelected && (
         <View style={styles.dropdownChoice}>
-          <T text={timeSelected} size={16} />
+          <T text={spacetime(timeSelected).format('time')} size={16} />
         </View>
       )}
 
       <View style={styles.footerContainer}>
-        <Button title="confirm" onPress={handleBookConfirm} />
+        <ErrorMessage message={errorMessage} />
+        <Button
+          title="confirm"
+          onPress={handleBookConfirm}
+          loading={isLoading}
+          disabled={isLoading || !userProfile?.id}
+        />
       </View>
 
       <DateTimePickerModal
@@ -97,6 +112,7 @@ const styles = StyleSheet.create({
   footerContainer: {
     justifyContent: 'flex-end',
     flex: 1,
+    marginBottom: 20,
   },
 
   fullBorder: {

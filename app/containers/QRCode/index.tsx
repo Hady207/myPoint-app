@@ -1,39 +1,62 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Image, T} from '@components/atoms';
 import rootSelectors from '@containers/Root/selectors';
 import {useSelector} from 'react-redux';
 import spacetime from 'spacetime';
+import {storageRead} from '@utils/storageUtils';
 
 const QRCode = () => {
   const {latestBookingInfo} = useSelector(rootSelectors);
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const getData = async () => {
+      if (latestBookingInfo?.qrCode) {
+        setData(latestBookingInfo);
+      } else {
+        const d = await storageRead('latestBookingInfo');
+        setData(d);
+      }
+    };
+    getData();
+  }, [latestBookingInfo]);
+
+  // console.log(data);
 
   return (
     <Container containerStyle={styles.containerStyle}>
-      <Image
-        style={styles.qrImageStyle}
-        source={{
-          uri: latestBookingInfo.qrcode,
-        }}
-        resizeMode="contain"
-      />
-      <View>
-        <View style={styles.fieldRow}>
-          <T text="Appointment location: " size={16} />
-          <T text="Golds Gym" size={16} />
-        </View>
-        <View style={styles.fieldRow}>
-          <T text="Time: " size={16} />
-          <T text={latestBookingInfo.bookingTime} size={16} />
-        </View>
-        <View style={styles.fieldRow}>
-          <T text="Date: " size={16} />
-          <T
-            text={spacetime(latestBookingInfo.bookingDate).format('numeric-uk')}
-            size={16}
+      {data?.qrcode ? (
+        <>
+          <Image
+            style={styles.qrImageStyle}
+            source={{
+              uri: data?.qrcode,
+            }}
+            resizeMode="contain"
           />
-        </View>
-      </View>
+          <View>
+            {/* <View style={styles.fieldRow}>
+              <T text="Appointment location: " size={16} />
+              <T text="Golds Gym" size={16} />
+            </View> */}
+            <View style={styles.fieldRow}>
+              <T text="Time: " size={16} />
+              <T text={spacetime(data?.bookingTime).format('time')} size={16} />
+            </View>
+            <View style={styles.fieldRow}>
+              <T text="Date: " size={16} />
+              <T
+                text={spacetime(data?.bookingDate).format('numeric-uk')}
+                size={16}
+              />
+            </View>
+          </View>
+        </>
+      ) : (
+        <>
+          <T text="No Booking Avaliable" />
+        </>
+      )}
     </Container>
   );
 };

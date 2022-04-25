@@ -16,3 +16,6 @@ export const getYearlyData = (id: string) =>
 
 export const getHourlyData = (id: string) =>
   api.get(`api/v1/bookings/${id}/hourly`);
+
+export const getScanRatioData = (id: string) =>
+  api.get(`api/v1/bookings/${id}/scan/ratio`);

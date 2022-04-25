@@ -18,7 +18,7 @@ const StoreList = ({data}: StoreListProps) => {
     <StoreCard store={item} onPress={() => handleNavigation(item)} />
   );
   return (
-    <View>
+    <>
       <T text="Stores" textStyle={{marginVertical: 10, fontSize: 21}} />
       <FlatList
         numColumns={2}
@@ -27,7 +27,7 @@ const StoreList = ({data}: StoreListProps) => {
         data={data}
         renderItem={renderItem}
       />
-    </View>
+    </>
   );
 };
 

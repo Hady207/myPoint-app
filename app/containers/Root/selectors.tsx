@@ -13,7 +13,7 @@ export const selectUserProfile = () =>
   createSelector(rootScreenSelector, substate => substate.userProfile);
 
 export const selectErrorMessage = () =>
-  createSelector(rootScreenSelector, substate => substate.error);
+  createSelector(rootScreenSelector, substate => substate.errorMessage);
 
 export const selectLatestBooking = () =>
   createSelector(rootScreenSelector, substate => substate.latestBookInfo);

@@ -63,54 +63,16 @@ const progressConfig = {
 
 const windowWidth = Dimensions.get('window').width;
 
-const DataBox = ({item, data, ...props}) => {
-  if (item.model === 'linear-time') {
+const DataBox = ({item, ...props}) => {
+  if (item.model === 'linear' && item?.data) {
     return (
       <Pressable {...props}>
         <View style={{flex: 1, marginTop: 20}}>
-          <T
-            text="Most Frequent Booked timings"
-            textStyle={{textAlign: 'left', flex: 1}}
-            size={20}
-          />
+          <T text={item?.title} textStyle={styles.textStyle} size={20} />
         </View>
         <View style={styles.graphChartContainer}>
           <LineChart
-            data={{
-              labels: ['Morning', 'Evening'],
-              datasets: [
-                {
-                  data: [1, 2],
-                },
-              ],
-            }}
-            width={windowWidth} // from react-native
-            height={Scale?.moderateScale(180)}
-            yAxisInterval={1} // optional, defaults to 1
-            chartConfig={chartConfig}
-            // bezier
-            style={{
-              marginVertical: 8,
-            }}
-          />
-        </View>
-      </Pressable>
-    );
-  }
-
-  if (item.model === 'linear') {
-    return (
-      <Pressable {...props}>
-        <View style={{flex: 1, marginTop: 20}}>
-          <T
-            text="Booked Users This Year"
-            textStyle={{textAlign: 'left', flex: 1}}
-            size={20}
-          />
-        </View>
-        <View style={styles.graphChartContainer}>
-          <LineChart
-            data={data}
+            data={item?.data}
             width={windowWidth} // from react-native
             height={Scale?.moderateScale(180)}
             yAxisInterval={1} // optional, defaults to 1
@@ -125,7 +87,7 @@ const DataBox = ({item, data, ...props}) => {
     );
   }
 
-  if (item.model === 'barchart') {
+  if (item.model === 'barchart' && item?.data) {
     return (
       <Pressable {...props}>
         <View style={{flex: 1, marginTop: 20}}>
@@ -138,7 +100,7 @@ const DataBox = ({item, data, ...props}) => {
         <View style={styles.graphChartContainer}>
           <BarChart
             style={styles.graphStyle}
-            data={data}
+            data={item?.data}
             width={windowWidth}
             height={Scale?.moderateScale(180)}
             yAxisLabel="$"
@@ -149,19 +111,15 @@ const DataBox = ({item, data, ...props}) => {
       </Pressable>
     );
   }
-  if (item.model === 'piechart') {
+  if (item.model === 'piechart' && item?.data) {
     return (
       <Pressable {...props}>
         <View style={{flex: 1, marginTop: 20, marginBottom: 10}}>
-          <T
-            text="Rush Hours Frequency"
-            textStyle={{textAlign: 'left', flex: 1}}
-            size={20}
-          />
+          <T text={item?.title} textStyle={styles.textStyle} size={20} />
         </View>
         <View style={styles.graphChartContainer}>
           <PieChart
-            data={data}
+            data={item?.data}
             width={windowWidth}
             height={220}
             chartConfig={chartConfig}
@@ -175,28 +133,7 @@ const DataBox = ({item, data, ...props}) => {
       </Pressable>
     );
   }
-  if (item.model === 'progressChart') {
-    return (
-      <Pressable {...props}>
-        <View style={{flex: 1, marginTop: 20}}>
-          <T
-            text="Booked User this month"
-            textStyle={{textAlign: 'left', flex: 1}}
-            size={20}
-          />
-        </View>
-        <View style={styles.graphChartContainer}>
-          <ProgressChart
-            data={dataPie}
-            width={windowWidth}
-            height={Scale?.moderateScale(180)}
-            chartConfig={progressConfig}
-            style={styles.graphStyle}
-          />
-        </View>
-      </Pressable>
-    );
-  }
+
   return null;
 };
 
@@ -212,5 +149,10 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     // borderRadius: 16,
     // paddingHorizontal: 10,
+  },
+  textStyle: {
+    textAlign: 'left',
+    flex: 1,
+    textTransform: 'capitalize',
   },
 });

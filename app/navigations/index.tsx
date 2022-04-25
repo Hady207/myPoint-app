@@ -12,14 +12,14 @@ const Stack = createNativeStackNavigator();
 const RootNavigator = () => {
   const routeNameRef = useRef();
 
+  const handleOnReady = () => {
+    isReadyRef.current = true;
+    routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+  };
+
   return (
     <SafeAreaProvider>
-      <NavigationContainer
-        ref={navigationRef}
-        onReady={() => {
-          isReadyRef.current = true;
-          routeNameRef.current = navigationRef.current.getCurrentRoute().name;
-        }}>
+      <NavigationContainer ref={navigationRef} onReady={handleOnReady}>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="AppDrawer" component={MainDrawerNavigator} />
         </Stack.Navigator>
