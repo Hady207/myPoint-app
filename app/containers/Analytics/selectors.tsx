@@ -25,7 +25,7 @@ export const selectBookingNumbers = () =>
   createSelector(analyticsScreenSelector, substate =>
     substate.adminStore?.bookings?.filter(
       (data: any) =>
-        data?.bookingDate ===
+        spacetime(data?.bookingDate).format('{year}-{iso-month}-{date-pad}') ===
         spacetime(new Date()).format('{year}-{iso-month}-{date-pad}'),
     ),
   );
