@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import React, {useEffect} from 'react';
 import messaging from '@react-native-firebase/messaging';
+import codePush from 'react-native-code-push';
 import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import RNBootSplash from 'react-native-bootsplash';
@@ -72,4 +73,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default codePush(App);
